@@ -1,0 +1,17 @@
+{
+    "name": "azeem/dev-plugin",
+    "description": "This plugin is just for development",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Azeem Haider",
+            "email": "axeemhaider@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./Inc"}
+    }
+}
