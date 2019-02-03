@@ -29,7 +29,7 @@ namespace Inc\Utils;
 
     public static function getAllFiles($searchDir){
 
-        $appRoot = APP_PATH . '/' . $searchDir;
+        $appRoot = \Config::APP_PATH . '/' . $searchDir;
 
         // Scan the base directory
         $baseDir = scandir($appRoot);
