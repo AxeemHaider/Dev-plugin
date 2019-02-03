@@ -7,32 +7,47 @@ namespace Inc\Services;
  */
 
 use Inc\Base\Service;
+use Inc\Api\SettingsApi;
 
  class PluginPages extends Service{
 
+    public $settingsApi;
+
+    public function __construct(){
+        
+        $this->settingsApi = new SettingsApi();
+
+    }
+
     public function register(){
 
-        add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
+        $pages = [
+            [
+                'page_title' => 'DevPlugin',
+                'menu_title' => 'DevPlugin',
+                'capability' => 'manage_options',
+                'menu_slug' => 'dev_plugin',
+                'callback' => function() { echo '<h1>Dev Plugin</h1>'; },
+                'icon_url' => 'dashicons-store',
+                'position' => 110
+            ]
+        ];
 
-        add_filter( 'plugin_action_links_'.\Config::PLUGIN_NAME, array($this, 'setting_link'));
+        $subPages = [
+            [
+                'page_title' => 'CPT',
+                'menu_title' => 'CPT',
+                'capability' => 'manage_options',
+                'menu_slug' => 'dev_plugin_cpt',
+                'callback' => function() { echo '<h1>CPT Page</h1>'; }
+            ]
+        ];
+
+        $this->settingsApi->addPages( $pages )->addSubPages( $subPages )->register();
+
     }
 
-    public function setting_link($links){
-        $setting_link = '<a href="admin.php?page=dev_plugin">Settings</a>';
-        array_push($links, $setting_link);
-        return $links;
-    }
 
-    public function add_admin_menu(){
-
-        add_menu_page( 'DevPlugin', 'DevPlugin', 'manage_options', 'dev_plugin',
-         array($this, 'menu_template'), 'dashicons-store', 110 );
-
-    }
-
-    public function menu_template(){
-        require_once \Config::APP_PATH . 'Inc/Templates/menu-page.php';
-    }
 
 
  }
