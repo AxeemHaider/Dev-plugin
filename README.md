@@ -1,6 +1,6 @@
 # Dev Plugin
 
-Full list of sections and features we will build during the series of Tutorials in wordpress plugin development
+Full list of sections and features we will build during the series of Tutorials in WordPress plugin development
 
 * Modular Administration Area
 * CPT Manager
